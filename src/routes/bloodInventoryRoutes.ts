@@ -6,13 +6,14 @@ import {
   updateInventory,
   deleteInventory
 } from '../Controller/bloodInventoryContrr'
+import { authenticate } from '../Auth/authMiddleware'; 
 
 const router = express.Router()
 
-router.post('/', createInventory)
-router.get('/', getAllInventories)
-router.get('/:id', getInventoryById)
-router.put('/:id', updateInventory)
-router.delete('/:id', deleteInventory)
+router.post('/',authenticate, createInventory)
+router.get('/',authenticate, getAllInventories)
+router.get('/:id', authenticate,getInventoryById)
+router.put('/:id',authenticate, updateInventory)
+router.delete('/:id', authenticate,deleteInventory)
 
 export default router
